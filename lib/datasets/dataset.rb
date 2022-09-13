@@ -4,7 +4,6 @@ require_relative "cache-path"
 require_relative "downloader"
 require_relative "error"
 require_relative "metadata"
-require_relative "table"
 
 module Datasets
   class Dataset
@@ -13,10 +12,6 @@ module Datasets
     attr_reader :metadata
     def initialize
       @metadata = Metadata.new
-    end
-
-    def to_table
-      Table.new(self)
     end
 
     def clear_cache!
