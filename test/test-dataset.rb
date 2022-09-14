@@ -3,7 +3,7 @@ class TestDataset < Test::Unit::TestCase
     include Helper::PathRestorable
 
     def setup
-      @dataset = Datasets::Iris.new
+      @dataset = DatasetsParquet::Iris.new
       @cache_dir_path = @dataset.send(:cache_dir_path)
     end
 

@@ -1,18 +1,18 @@
 class MetadataTest < Test::Unit::TestCase
   def setup
-    @metadata = Datasets::Metadata.new
+    @metadata = DatasetsParquet::Metadata.new
   end
 
   sub_test_case("#licenses") do
     test("String") do
       @metadata.licenses = "Apache-2.0"
-      assert_equal([Datasets::License.new("Apache-2.0")],
+      assert_equal([DatasetsParquet::License.new("Apache-2.0")],
                    @metadata.licenses)
     end
 
     test("[String]") do
       @metadata.licenses = ["Apache-2.0"]
-      assert_equal([Datasets::License.new("Apache-2.0")],
+      assert_equal([DatasetsParquet::License.new("Apache-2.0")],
                    @metadata.licenses)
     end
 
@@ -21,7 +21,7 @@ class MetadataTest < Test::Unit::TestCase
         name: "Quora's Terms of Service",
         url: "https://www.quora.com/about/tos",
       }
-      assert_equal([Datasets::License.new(nil,
+      assert_equal([DatasetsParquet::License.new(nil,
                                           "Quora's Terms of Service",
                                           "https://www.quora.com/about/tos")],
                    @metadata.licenses)

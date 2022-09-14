@@ -1,4 +1,4 @@
-module Datasets
+module DatasetsParquet
   class License < Struct.new(:spdx_id,
                              :name,
                              :url)

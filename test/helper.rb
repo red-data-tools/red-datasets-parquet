@@ -3,7 +3,7 @@ require "pathname"
 require "time"
 require "tmpdir"
 
-require "datasets"
+require "datasets-parquet"
 
 require "test-unit"
 

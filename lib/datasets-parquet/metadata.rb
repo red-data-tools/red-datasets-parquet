@@ -1,6 +1,6 @@
 require_relative "license"
 
-module Datasets
+module DatasetsParquet
   class Metadata < Struct.new(:id,
                               :name,
                               :url,

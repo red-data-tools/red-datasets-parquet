@@ -1,10 +1,10 @@
 class TLCYellowTaxiTripTest < Test::Unit::TestCase
   def record(*args)
-    Datasets::TLC::YellowTaxiTrip::Record.new(*args)
+    DatasetsParquet::TLC::YellowTaxiTrip::Record.new(*args)
   end
 
   test("each") do
-    dataset = Datasets::TLC::YellowTaxiTrip.new(year: 2022, month: 1)
+    dataset = DatasetsParquet::TLC::YellowTaxiTrip.new(year: 2022, month: 1)
     records = dataset.each.to_a
 
     assert_equal([

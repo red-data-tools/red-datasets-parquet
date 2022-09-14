@@ -5,8 +5,8 @@ require_relative "downloader"
 require_relative "error"
 require_relative "metadata"
 
-module Datasets
-  class Dataset
+module DatasetsParquet
+  class DatasetParquet
     include Enumerable
 
     attr_reader :metadata

@@ -6,7 +6,7 @@ end
 require "net/http"
 require "pathname"
 
-module Datasets
+module DatasetsParquet
   class Downloader
     class TooManyRedirects < StandardError; end
 
@@ -29,7 +29,7 @@ module Datasets
 
       headers = {
         "Accept-Encoding" => "identity",
-        "User-Agent" => "Red Datasets/#{VERSION}",
+        "User-Agent" => "Red DatasetsParquet/#{VERSION}",
       }
       start = nil
       partial_output_path = Pathname.new("#{output_path}.partial")

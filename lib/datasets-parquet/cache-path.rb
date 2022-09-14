@@ -1,11 +1,11 @@
-module Datasets
+module DatasetsParquet
   class CachePath
     def initialize(id)
       @id = id
     end
 
     def base_dir
-      Pathname(system_cache_dir).expand_path + 'red-datasets' + @id
+      Pathname(system_cache_dir).expand_path + 'red-datasets-parquet' + @id
     end
 
     def remove

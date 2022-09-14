@@ -15,13 +15,13 @@ class DownloaderTest < Test::Unit::TestCase
       last_url = "https://example.com/last_redirection"
       expected_message = "too many redirections: #{first_url} .. #{last_url}"
       output_path = @tmp_dir + "file"
-      downloader = Datasets::Downloader.new(first_url)
+      downloader = DatasetsParquet::Downloader.new(first_url)
 
       downloader.define_singleton_method(:start_http) do |url, headers|
-        raise Datasets::Downloader::TooManyRedirects, "too many redirections: #{last_url}"
+        raise DatasetsParquet::Downloader::TooManyRedirects, "too many redirections: #{last_url}"
       end
 
-      assert_raise(Datasets::Downloader::TooManyRedirects.new(expected_message)) do
+      assert_raise(DatasetsParquet::Downloader::TooManyRedirects.new(expected_message)) do
         downloader.download(output_path)
       end
     end

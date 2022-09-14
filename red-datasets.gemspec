@@ -5,7 +5,7 @@ clean_white_space = lambda do |entry|
 end
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib"))
-require "datasets/version"
+require "datasets_parquet/version"
 
 Gem::Specification.new do |spec|
   spec.name = "red-datasets"
