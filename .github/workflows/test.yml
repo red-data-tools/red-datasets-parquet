@@ -11,7 +11,7 @@ jobs:
   test:
     name: "Ruby ${{ matrix.ruby-version }}: ${{ matrix.runs-on }}"
     strategy:
-      # To avoid high frequency datasets download in a short time.
+      # To avoid high frequency datasets parquet download in a short time.
       max-parallel: 1
       fail-fast: false
       matrix:
@@ -37,7 +37,7 @@ jobs:
           runner.os == 'Linux'
         with:
           path: |
-            ~/.cache/red-datasets
+            ~/.cache/red-datasets-parquet
           key: ${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ hashFiles('lib/**') }}
           restore-keys: |
             ${{ env.CACHE_VERSION }}-${{ runner.os }}-
@@ -46,7 +46,7 @@ jobs:
           runner.os == 'macOS'
         with:
           path: |
-            ~/Library/Caches/red-datasets
+            ~/Library/Caches/red-datasets-parquet
           key: ${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ hashFiles('lib/**') }}
           restore-keys: |
             ${{ env.CACHE_VERSION }}-${{ runner.os }}-
@@ -55,7 +55,7 @@ jobs:
           runner.os == 'Windows'
         with:
           path: |
-            ~/AppData/Local/red-datasets
+            ~/AppData/Local/red-datasets-parquet
           key: ${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ hashFiles('lib/**') }}
           restore-keys: |
             ${{ env.CACHE_VERSION }}-${{ runner.os }}-
