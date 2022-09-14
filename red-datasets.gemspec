@@ -34,10 +34,7 @@ Gem::Specification.new do |spec|
   spec.files += Dir.glob("doc/text/*")
   spec.test_files += Dir.glob("test/**/*")
 
-  spec.add_runtime_dependency("csv", ">= 3.2.4")
   spec.add_runtime_dependency("red-parquet")
-  spec.add_runtime_dependency("rexml")
-  spec.add_runtime_dependency("rubyzip")
 
   spec.add_development_dependency("bundler")
   spec.add_development_dependency("rake")
