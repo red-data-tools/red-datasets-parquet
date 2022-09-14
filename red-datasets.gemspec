@@ -5,14 +5,14 @@ clean_white_space = lambda do |entry|
 end
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib"))
-require "datasets_parquet/version"
+require "datasets-parquet/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "red-datasets"
-  spec.version = Datasets::VERSION
-  spec.homepage = "https://github.com/red-data-tools/red-datasets"
-  spec.authors = ["tomisuker", "Kouhei Sutou"]
-  spec.email = ["tomisuker16@gmail.com", "kou@clear-code.com"]
+  spec.name = "red-datasets-parquet"
+  spec.version = DatasetsParquet::VERSION
+  spec.homepage = "https://github.com/red-data-tools/red-datasets-parquet"
+  spec.authors = ["otegami", "Kouhei Sutou"]
+  spec.email = ["a.s.takuya1026@gmail.com", "kou@clear-code.com"]
 
   readme = File.read("README.md")
   readme.force_encoding("UTF-8")
