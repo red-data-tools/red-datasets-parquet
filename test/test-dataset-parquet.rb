@@ -3,17 +3,18 @@ class TestDataset < Test::Unit::TestCase
     include Helper::PathRestorable
 
     def setup
-      @dataset = DatasetsParquet::Iris.new
+      @dataset = DatasetsParquet::TLC::YellowTaxiTrip.new(year: 2022, month: 1)
       @cache_dir_path = @dataset.send(:cache_dir_path)
+      @base_name = "yellow_tripdata_%04d-%02d.parquet" % [2022, 1]
     end
 
     test("when the dataset is downloaded") do
       @dataset.first # This ensures the dataset downloaded
-      existence = {before: @cache_dir_path.join("iris.csv").exist?}
+      existence = {before: @cache_dir_path.join(@base_name).exist?}
 
       restore_path(@cache_dir_path) do
         @dataset.clear_cache!
-        existence[:after] = @cache_dir_path.join("iris.csv").exist?
+        existence[:after] = @cache_dir_path.join(@base_name).exist?
 
         assert_equal({before: true, after: false},
                      existence)
