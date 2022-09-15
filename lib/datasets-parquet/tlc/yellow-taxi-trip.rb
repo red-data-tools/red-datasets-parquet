@@ -1,9 +1,8 @@
 require "parquet"
-require_relative "../dataset-parquet"
 
 module DatasetsParquet
   module TLC
-    class YellowTaxiTrip < DatasetParquet
+    class YellowTaxiTrip < Datasets::Dataset
       class Record < Struct.new(:vendor,
                                 :tpep_pickup_datetime,
                                 :tpep_dropoff_datetime,
