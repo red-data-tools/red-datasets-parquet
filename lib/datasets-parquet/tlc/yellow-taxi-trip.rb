@@ -1,5 +1,3 @@
-require "parquet"
-
 module DatasetsParquet
   module TLC
     class YellowTaxiTrip < Datasets::Dataset
