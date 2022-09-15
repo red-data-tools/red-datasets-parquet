@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.files += Dir.glob("doc/text/*")
   spec.test_files += Dir.glob("test/**/*")
 
+  spec.add_runtime_dependency("red-datasets")
   spec.add_runtime_dependency("red-parquet")
 
   spec.add_development_dependency("bundler")
