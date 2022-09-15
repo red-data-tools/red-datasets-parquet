@@ -37,7 +37,7 @@ jobs:
           runner.os == 'Linux'
         with:
           path: |
-            ~/.cache/red-datasets-parquet
+            ~/.cache/red-datasets
           key: ${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ hashFiles('lib/**') }}
           restore-keys: |
             ${{ env.CACHE_VERSION }}-${{ runner.os }}-
@@ -46,7 +46,7 @@ jobs:
           runner.os == 'macOS'
         with:
           path: |
-            ~/Library/Caches/red-datasets-parquet
+            ~/Library/Caches/red-datasets
           key: ${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ hashFiles('lib/**') }}
           restore-keys: |
             ${{ env.CACHE_VERSION }}-${{ runner.os }}-
@@ -55,7 +55,7 @@ jobs:
           runner.os == 'Windows'
         with:
           path: |
-            ~/AppData/Local/red-datasets-parquet
+            ~/AppData/Local/red-datasets
           key: ${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ hashFiles('lib/**') }}
           restore-keys: |
             ${{ env.CACHE_VERSION }}-${{ runner.os }}-
