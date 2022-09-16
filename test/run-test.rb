@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+$VERBOSE = true
+
+require "pathname"
+
+base_dir = Pathname.new(__FILE__).dirname.parent.expand_path
+
+lib_dir = base_dir + "lib"
+test_dir = base_dir + "test"
+
+$LOAD_PATH.unshift(lib_dir.to_s)
+
+require_relative "helper"
+
+ARGV.unshift("--max-diff-target-string-size=#{10 * 1024}")
+
+exit(Test::Unit::AutoRunner.run(true, test_dir.to_s))

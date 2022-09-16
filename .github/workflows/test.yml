@@ -1,0 +1,76 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: |
+        0 0 * * 0
+
+jobs:
+  test:
+    name: "Ruby ${{ matrix.ruby-version }}: ${{ matrix.runs-on }}"
+    strategy:
+      # To avoid high frequency datasets parquet download in a short time.
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - "2.7"
+          - "3.0"
+          - "3.1"
+        runs-on:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.runs-on }}
+    env:
+      # We can invalidate the current cache by updating this.
+      CACHE_VERSION: "2022-08-27"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+      - uses: actions/cache@v3
+        if: |
+          runner.os == 'Linux'
+        with:
+          path: |
+            ~/.cache/red-datasets
+          key: ${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ hashFiles('lib/**') }}
+          restore-keys: |
+            ${{ env.CACHE_VERSION }}-${{ runner.os }}-
+      - uses: actions/cache@v3
+        if: |
+          runner.os == 'macOS'
+        with:
+          path: |
+            ~/Library/Caches/red-datasets
+          key: ${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ hashFiles('lib/**') }}
+          restore-keys: |
+            ${{ env.CACHE_VERSION }}-${{ runner.os }}-
+      - uses: actions/cache@v3
+        if: |
+          runner.os == 'Windows'
+        with:
+          path: |
+            ~/AppData/Local/red-datasets
+          key: ${{ env.CACHE_VERSION }}-${{ runner.os }}-${{ hashFiles('lib/**') }}
+          restore-keys: |
+            ${{ env.CACHE_VERSION }}-${{ runner.os }}-
+      - name: Prepare the Apache Arrow APT repository
+        if: |
+          runner.os == 'Linux'
+        run: |
+          sudo apt update
+          sudo apt install -y -V ca-certificates lsb-release wget
+          wget https://apache.jfrog.io/artifactory/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb
+          sudo apt install -y -V ./apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb
+          sudo apt update
+      - name: Install dependencies
+        run: |
+          bundle install
+      - name: Test
+        run: |
+          bundle exec rake
