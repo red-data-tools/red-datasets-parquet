@@ -87,22 +87,21 @@ module DatasetsParquet
         @month = month
       end
 
-      def each
-        return to_enum(__method__) unless block_given?
-
-        open_data.raw_records.each do |raw_record|
-          record = Record.new(*raw_record)
-          yield(record)
-        end
-      end
-
-      private
-      def open_data
+      def to_arrow
         base_name = "yellow_tripdata_%04d-%02d.parquet" % [@year, @month]
         data_path = cache_dir_path + base_name
         data_url = "https://d37ci6vzurychx.cloudfront.net/trip-data/#{base_name}"
         download(data_path, data_url)
         Arrow::Table.load(data_path)
+      end
+
+      def each
+        return to_enum(__method__) unless block_given?
+
+        to_arrow.raw_records.each do |raw_record|
+          record = Record.new(*raw_record)
+          yield(record)
+        end
       end
     end
   end
