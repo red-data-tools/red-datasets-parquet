@@ -30,7 +30,7 @@ class TLCGreenTaxiTripTest < Test::Unit::TestCase
     TABLE
   end
 
-  test("each") do
+  test("#each") do
     records = @dataset.each.to_a
 
     assert_equal([
