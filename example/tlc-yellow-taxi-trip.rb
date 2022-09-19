@@ -3,6 +3,14 @@
 require "datasets-parquet"
 
 trips = DatasetsParquet::TLC::YellowTaxiTrip.new(year: 2022, month: 1)
+
+p trips.to_arrow
+# #<Arrow::Table:0x128949110 ptr=0x102c10b60>
+# VendorID             tpep_pickup_datetime           tpep_dropoff_datetime       passenger_count trip_distance   RatecodeID      store_and_fwd_flag      PULocationID    DOLocationID       payment_type    fare_amount          extra         mta_tax      tip_amount      tolls_amount    improvement_surcharge   total_amount    congestion_surcharge    airport_fee
+# 0        1        2022-01-01T09:35:40+09:00       2022-01-01T09:53:29+09:00              2.000000      3.800000     1.000000      N                                142             236                  1      14.500000       3.000000        0.500000        3.650000          0.000000                 0.300000      21.950000                2.500000       0.000000
+# 1        1        2022-01-01T09:33:43+09:00       2022-01-01T09:42:07+09:00              1.000000      2.100000     1.000000      N                                236              42                  1       8.000000       0.500000        0.500000        4.000000          0.000000                 0.300000      13.300000                0.000000       0.000000
+# ...
+
 trips.each do |trip|
   p [
       trip.vendor,
