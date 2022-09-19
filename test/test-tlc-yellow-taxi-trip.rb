@@ -27,7 +27,7 @@ class TLCYellowTaxiTripTest < Test::Unit::TestCase
                           0.3,
                           21.95,
                           2.5,
-                          0.0),
+                          0.0).to_h,
                    record(2,
                           Time.parse('2022-02-01 08:46:00 +0900'),
                           Time.parse('2022-02-01 09:13:00 +0900'),
@@ -46,12 +46,12 @@ class TLCYellowTaxiTripTest < Test::Unit::TestCase
                           0.3,
                           35.06,
                           nil,
-                          nil)
+                          nil).to_h
                  ],
                  [
                    records.size,
-                   records.first,
-                   records.last,
+                   records.first.to_h,
+                   records.last.to_h,
                  ])
   end
 end
