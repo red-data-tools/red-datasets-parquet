@@ -1,4 +1,4 @@
-require "datasets"
+require "datasets-arrow"
 require "parquet"
 
 require_relative "datasets-parquet/version"

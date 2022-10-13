@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.files += Dir.glob("image/*.*")
   spec.files += Dir.glob("doc/text/*")
 
-  spec.add_runtime_dependency("red-datasets")
+  spec.add_runtime_dependency("red-datasets-arrow")
   spec.add_runtime_dependency("red-parquet")
 
   spec.add_development_dependency("bundler")
