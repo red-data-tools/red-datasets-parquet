@@ -2,7 +2,7 @@
 
 require "datasets-parquet"
 
-trips = DatasetsParquet::TLC::GreenTaxiTrip.new(year: 2022, month: 1)
+trips = Datasets::TLC::GreenTaxiTrip.new(year: 2022, month: 1)
 
 p trips.to_arrow
 # #<Arrow::Table:0x1474998d0 ptr=0x136e79d60>

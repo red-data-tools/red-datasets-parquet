@@ -1,6 +1,6 @@
-module DatasetsParquet
+module Datasets
   module TLC
-    class YellowTaxiTrip < Datasets::Dataset
+    class YellowTaxiTrip < Dataset
       class Record < Struct.new(:vendor,
                                 :tpep_pickup_datetime,
                                 :tpep_dropoff_datetime,
