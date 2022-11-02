@@ -2,7 +2,7 @@ class TLCGreenTaxiTripTest < Test::Unit::TestCase
   def setup
     @default_timezone_env = ENV['TZ']
     ENV['TZ'] = 'UTC'
-    @dataset = DatasetsParquet::TLC::GreenTaxiTrip.new(year: 2022, month: 1)
+    @dataset = Datasets::TLC::GreenTaxiTrip.new(year: 2022, month: 1)
   end
 
   def teardown
