@@ -68,6 +68,13 @@ jobs:
           wget https://apache.jfrog.io/artifactory/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb
           sudo apt install -y -V ./apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb
           sudo apt update
+      - name: Prepare Apache Arrow on macOS
+        if: |
+          runner.os == 'macOS'
+        run: |
+          brew install apache-arrow
+          brew install gobject-introspection
+          brew install apache-arrow-glib
       - name: Install dependencies
         run: |
           bundle install
